@@ -5,11 +5,7 @@ var up = document.getElementsByClassName('buttonUp')[0];
 var down = document.getElementsByClassName('buttonDown')[0];
 var shoot = document.getElementsByClassName('buttonShoot')[0];
 var shooting = document.getElementById('shooting');
-// var deg = 0;
 
-/*up.addEventListener('click',moveCannonUp, false);
-down.addEventListener('click',moveCannonDown, false);
-shoot.addEventListener('click',fireCannon, false);*/
 
 var cannon = {
     deg: 0,
@@ -79,11 +75,17 @@ Ball.prototype.fire = function(node) {
 Ball.prototype.moveBall = function(){
     var that = this.el;
     var sum = 0;
+    var deg  = 1;
     helper.animate(that, function(el, i){
-        sum +=i * 10;
-        helper.changeCss(el,'transform: translate('+ sum + 'px, '+ sum+ 'px);');
-        return this.el;}
-        ,10)
+        sum += deg * 10;
+        helper.changeCss(el,'transform: translate('+ sum + 'px, '+ sum+ 'px)');
+        if (sum>900){
+            that.parentNode.removeChild(that);
+            return true;
+        }
+
+        }
+        ,50)
 
 /*    horizontalDistance = that.power * Math.cos(Math.toRadians(that.deg)) * time;
     verticalDistance = (that.power * time * Math.sin(Math.toRadians(that.deg))) - (0.5 * preference.g * Math.pow(time,2));*/
