@@ -70,6 +70,4 @@ Ball.prototype.moveBall = function(){
 
         }
         ,time)
-
-
 }
