@@ -19,11 +19,14 @@ var cannon = {
         this.render();
     },
     render: function() {
-        this.barrel.setAttribute('style', 'transform: rotate(' + cannon.deg + 'deg);')
+        this.barrel.setAttribute('style', 'transform: rotate(' + cannon.deg + 'deg);');
     },
     fireCannon: function() {
         var ball = new Ball();
         ball.fire(shooting);
+    },
+    power: function() {
+        return 2;
     }
 }
 
@@ -39,29 +42,6 @@ shoot.addEventListener('click', function(){
     cannon.fireCannon();
 });
 
-/*
-function moveCannonUp() {
-    deg+=2;
-    barrel.setAttribute('style', 'transform:rotate(' + deg + 'deg);');
-}
-
-function moveCannonDown() {
-    deg-=2;
-    barrel.setAttribute('style', 'transform:rotate(' + deg + 'deg);');
-    }
-
-*/
-
-/*function fireCannon() {
-    var ball = new Ball();
-    ball.fire(shooting);
-
-
-    // helper.animate(ball, function(){
-    //
-    // },1000)
-}*/
-
 function Ball() {
     this.el = document.createElement('div');
     this.el.className = "ball";
@@ -69,6 +49,7 @@ function Ball() {
 
 Ball.prototype.fire = function(node) {
     node.appendChild(this.el);
+    this.el.setAttribute('style', 'bottom: '+ (125 + cannon.deg*3) + 'px; right: '+ (377 - cannon.deg) + 'px;');
     this.moveBall();
 }
 
@@ -76,17 +57,19 @@ Ball.prototype.moveBall = function(){
     var that = this.el;
     var sum = 0;
     var deg  = 1;
+    var time = 20;
+/*    var horizontalDistance = that.power * Math.cos(Math.toRadians(that.deg)) * time;
+    var verticalDistance = (that.power * time * Math.sin(Math.toRadians(that.deg))) - (0.5 * preference.g * Math.pow(time,2));*/
     helper.animate(that, function(el, i){
-        sum += deg * 10;
-        helper.changeCss(el,'transform: translate('+ sum + 'px, '+ sum+ 'px)');
-        if (sum>900){
+        sum += deg * -10;
+        helper.changeCss(el,'transform: translate('+ sum + 'px, '+ '1px)');
+        if (sum<-900){
             that.parentNode.removeChild(that);
             return true;
         }
 
         }
-        ,50)
+        ,time)
 
-/*    horizontalDistance = that.power * Math.cos(Math.toRadians(that.deg)) * time;
-    verticalDistance = (that.power * time * Math.sin(Math.toRadians(that.deg))) - (0.5 * preference.g * Math.pow(time,2));*/
+
 }

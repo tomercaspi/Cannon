@@ -27,7 +27,6 @@
    * @return global.helper object (for chaining)
    */
   function changeCss(el, css) {
-    console.log("this.el from the ChangeCSS function" + this.el);
     var prop = dashToCamelcase(css.split(':')[0]);
     var value = css.split(':')[1];
 

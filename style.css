@@ -24,7 +24,7 @@
   bottom: 125px;
   right: 217px;
   height: 16px;
-  background-color: darkgrey;
+  background-color: #000000;
   z-index: 15;
   border-top-right-radius: 30%;
   border-bottom-right-radius: 30%;
@@ -73,12 +73,14 @@
 
 .ball{
   position: absolute;
+  bottom: 125px;
+  right: 377px;
   display: block;
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background-color: #000;
-  transform-origin: 50% 50%;
+  /*transform-origin: 50% 50%;*/
   transform: translate(0, 0);
   z-index: 40;
 }
